@@ -1,0 +1,9 @@
+.bundle
+.byebug_history
+/db/*.sqlite3
+/db/*.sqlite3-journal
+/log/*
+/tmp/*
+!/log/.keep
+!/tmp/.keep
+secrets.yml
