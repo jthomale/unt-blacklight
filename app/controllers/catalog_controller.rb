@@ -5,7 +5,7 @@ class CatalogController < ApplicationController
   include Blacklight::Marc::Catalog
 
   def search_action_url options = {}
-    options[:protocol] = request.headers['X-Forwarded-Protocol'] or request.protocol
+    options[:protocol] = request.headers['X-Forwarded-Proto'] or request.protocol
     super options
   end
 
