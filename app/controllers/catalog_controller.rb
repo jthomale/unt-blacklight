@@ -74,7 +74,7 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'material_type', label: 'Material Type'
+    config.add_facet_field 'material_type', label: 'Material Type', startfilter: true
     config.add_facet_field 'publication_dates_facet', label: 'Publication Date', :query => {
         :years_21st_cent => { label: '21st Century', fq: "publication_dates_facet:[2000 TO 2099] OR publication_dates_facet:\"21st century\"" },
         :years_highest => { label: '2015 or later', fq: "publication_dates_facet:[2015 TO 2099]" },

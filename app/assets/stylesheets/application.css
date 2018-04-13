@@ -13,3 +13,17 @@
  *= require_tree .
  *= require_self
  */
+
+#header-navbar .navbar-brand {
+  background: transparent;
+  overflow: initial;
+}
+
+.container.home-search {
+  text-align: center;
+}
+
+.container.home-search .jumbotron {
+  background-color: #f4f4f4;
+  border: 1px solid #ddd;
+}
