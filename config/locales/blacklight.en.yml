@@ -1,7 +1,6 @@
 en:
   blacklight:
-    application_name: 'UNT Libraries, Books & More'
-    short_app_name: 'Books & More'
+    application_name: 'UNT Libraries Search'
     search:
       facets:
         title: 'Narrow your search'
