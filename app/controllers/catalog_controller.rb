@@ -130,6 +130,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'public_author_facet', label: 'Author or Contributor', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_title_facet', label: 'Work Title', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_series_facet', label: 'Series Title', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'meetings_facet', label: 'Meeting or Event', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_subject_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'languages', label: 'Language', limit: 20
