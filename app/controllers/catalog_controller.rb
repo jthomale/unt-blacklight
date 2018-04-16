@@ -95,6 +95,7 @@ class CatalogController < ApplicationController
         :theses_and_dissertations => { label: 'Theses and Dissertations', fq: "material_type:z OR material_type:s" },
         :video => { label: 'Video (DVD, VHS, Film)', fq: "material_type:g" },
     }
+    config.add_facet_field 'languages', label: 'Language', limit: 10
     config.add_facet_field 'publication_dates_facet', label: 'Publication Date', :query => {
         :years_21st_cent => { label: '21st Century', fq: "publication_dates_facet:[2000 TO 2099] OR publication_dates_facet:\"21st century\"" },
         :years_highest => { label: '2015 or later', fq: "publication_dates_facet:[2015 TO 2099]" },
@@ -127,15 +128,14 @@ class CatalogController < ApplicationController
         :years_lowest => { label: 'Pre-10th Century', fq: "publication_dates_facet:/..?.?/ AND publication_dates_facet:[0 TO 899]" },
     }
     # config.add_facet_field 'publication_dates_facet', label: 'Year of Publication'
-    config.add_facet_field 'public_author_facet', label: 'Author or Contributor', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'public_title_facet', label: 'Work Title', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'public_series_facet', label: 'Series Title', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'meetings_facet', label: 'Meeting or Event', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'public_genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'public_subject_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'languages', label: 'Language', limit: 20
-    config.add_facet_field 'geographic_terms_facet', label: 'Region', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'era_terms_facet', label: 'Era', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'public_author_facet', label: 'Author or Contributor', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'public_title_facet', label: 'Work', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'public_series_facet', label: 'Series', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'meetings_facet', label: 'Meeting or Event', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'public_genre_facet', label: 'Genre', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'public_subject_facet', label: 'Subject - Person or Topic', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'geographic_terms_facet', label: 'Subject - Region', limit: 10, index_range: 'A'..'Z'
+    config.add_facet_field 'era_terms_facet', label: 'Subject - Era', limit: 10, index_range: 'A'..'Z'
 
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['material_type', 'languages']
 
@@ -145,19 +145,19 @@ class CatalogController < ApplicationController
     #    :years_25 => { label: 'within 25 Years', fq: "publication_dates:[#{Time.zone.now.year - 25 } TO *]" }
     # }
 
-    config.add_facet_field 'game_duration_facet_field', label: 'Games, Duration', :query => {
+    config.add_facet_field 'game_duration_facet_field', label: 'Games - Duration', :query => {
         :duration_1 => { label: 'less than 30 minutes', fq: "game_facet:d1t29" },
         :duration_30 => { label: '30 minutes to 1 hour', fq: "game_facet:d30t59" },
         :duration_60 => { label: '1 to 2 hours', fq: "game_facet:d60t120" },
         :duration_120 => { label: 'more than 2 hours', fq: "game_facet:d120t500" }
     }
-    config.add_facet_field 'game_players_facet_field', label: 'Games, Number of Players', :query => {
+    config.add_facet_field 'game_players_facet_field', label: 'Games - Number of Players', :query => {
         :players_1 => { label: '1 player', fq: "game_facet:p1" },
         :players_2 => { label: '2 to 4 players', fq: "game_facet:p2t4" },
         :players_4 => { label: '5 to 8 players', fq: "game_facet:p4t8" },
         :players_8 => { label: 'more than 8 players', fq: "game_facet:p9t99" }
     }
-    config.add_facet_field 'game_age_facet_field', label: 'Games, Recommended Age', :query => {
+    config.add_facet_field 'game_age_facet_field', label: 'Games - Recommended Age', :query => {
         :age_1 => { label: '1 to 4 years', fq: "game_facet:a1t4" },
         :age_5 => { label: '5 to 9 years', fq: "game_facet:a5t9" },
         :age_10 => { label: '10 to 13 years', fq: "game_facet:a10t13" },
