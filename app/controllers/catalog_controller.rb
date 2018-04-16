@@ -74,6 +74,21 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
+    config.add_facet_field 'bib_location_codes', label: 'Availability', :query => {
+        :online => { label: 'Online Copy Available', fq: "bib_location_codes:*www OR item_location_codes:*www" },
+        :dpl => { label: 'Discovery Park Library', fq: "bib_location_codes:r* OR item_location_codes:r*" },
+        :ecl => { label: 'Eagle Commons Library', fq: "bib_location_codes:s* OR item_location_codes:s*" },
+        :factory => { label: 'The Factory (Makerspace)', fq: "bib_location_codes:*mak OR item_location_codes:*mak" },
+        :govdocs => { label: 'Government Documents', fq: "bib_location_codes:sd* OR bib_location_codes:xdoc OR item_location_codes:sd* OR item_location_codes:xdoc" },
+        :media => { label: 'Media Library', fq: "bib_location_codes:czm* OR item_location_codes:czm* OR bib_location_codes:xmed OR item_location_codes:xmed" },
+        :music => { label: 'Music Library', fq: "bib_location_codes:w4m OR item_location_codes:w4m OR bib_location_codes:xmus OR item_location_codes:xmus" },
+        :remote => { label: 'Remote Storage', fq: "bib_location_codes:x* OR item_location_codes:x*" },
+        :special => { label: 'Special Collections', fq: "bib_location_codes:w4s OR item_location_codes:w4s OR bib_location_codes:xspe OR item_location_codes:xspe" },
+        :law => { label: 'UNT Dallas Law Library', fq: "bib_location_codes:law* OR item_location_codes:law*" },
+        :dallas => { label: 'UNT Dallas Library', fq: "bib_location_codes:d* OR item_location_codes:d*" },
+        :willis => { label: 'Willis Library', fq: "bib_location_codes:w* OR item_location_codes:w*" },
+    }
+
     config.add_facet_field 'material_type', label: 'Format', :query => {
         :archival_collections => { label: 'Archival Collections', fq: "material_type:p" },
         :books => { label: 'Books (All)', fq: "material_type:a OR material_type:i OR material_type:n" },
