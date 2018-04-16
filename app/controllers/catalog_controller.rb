@@ -74,7 +74,27 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'material_type', label: 'Material Type', limit: 20
+    config.add_facet_field 'material_type', label: 'Format', :query => {
+        :archival_collections => { label: 'Archival Collections', fq: "material_type:p" },
+        :books => { label: 'Books (All)', fq: "material_type:a OR material_type:i OR material_type:n" },
+        :books_audio => { label: 'Books (Audio)', fq: "material_type:i" },
+        :books_electronic => { label: 'Books (Electronic)', fq: "material_type:n" },
+        :books_print => { label: 'Books (Print)', fq: "material_type:a" },
+        :computer_files => { label: 'Computer Files', fq: "material_type:m" },
+        :databases => { label: 'Databases', fq: "material_type:b" },
+        :educational_kits => { label: 'Educational Kits', fq: "material_type:o" },
+        :journals => { label: 'Journals (All)', fq: "material_type:q OR material_type:y" },
+        :journals_online => { label: 'Journals (Online)', fq: "material_type:q" },
+        :journals_print => { label: 'Journals (Print)', fq: "material_type:y" },
+        :manuscripts => { label: 'Manuscripts', fq: "material_type:t" },
+        :maps => { label: 'Maps', fq: "material_type:e OR material_type:f" },
+        :music_cds => { label: 'Music (CDs)', fq: "material_type:j" },
+        :music_scores => { label: 'Music (Scores)', fq: "material_type:c OR material_type:d OR material_type:s" },
+        :physical_objects => { label: 'Physical Objects', fq: "material_type:r" },
+        :print_graphics => { label: 'Print Graphics', fq: "material_type:k" },
+        :theses_and_dissertations => { label: 'Theses and Dissertations', fq: "material_type:z OR material_type:s" },
+        :video => { label: 'Video (DVD, VHS, Film)', fq: "material_type:g" },
+    }
     config.add_facet_field 'publication_dates_facet', label: 'Publication Date', :query => {
         :years_21st_cent => { label: '21st Century', fq: "publication_dates_facet:[2000 TO 2099] OR publication_dates_facet:\"21st century\"" },
         :years_highest => { label: '2015 or later', fq: "publication_dates_facet:[2015 TO 2099]" },
@@ -110,7 +130,7 @@ class CatalogController < ApplicationController
     config.add_facet_field 'public_author_facet', label: 'Author or Contributor', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_title_facet', label: 'Work Title', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_series_facet', label: 'Series Title', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'public_genre_facet', label: 'Genre or Format', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'public_genre_facet', label: 'Genre', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'public_subject_facet', label: 'Subject', limit: 20, index_range: 'A'..'Z'
     config.add_facet_field 'languages', label: 'Language', limit: 20
     config.add_facet_field 'geographic_terms_facet', label: 'Region', limit: 20, index_range: 'A'..'Z'
