@@ -74,7 +74,7 @@ class CatalogController < ApplicationController
     #  (useful when user clicks "more" on a large facet and wants to navigate alphabetically across a large set of results)
     # :index_range can be an array or range of prefixes that will be used to create the navigation (note: It is case sensitive when searching values)
 
-    config.add_facet_field 'material_type', label: 'Material Type', startfilter: true
+    config.add_facet_field 'material_type', label: 'Material Type', limit: 20
     config.add_facet_field 'publication_dates_facet', label: 'Publication Date', :query => {
         :years_21st_cent => { label: '21st Century', fq: "publication_dates_facet:[2000 TO 2099] OR publication_dates_facet:\"21st century\"" },
         :years_highest => { label: '2015 or later', fq: "publication_dates_facet:[2015 TO 2099]" },
@@ -107,15 +107,13 @@ class CatalogController < ApplicationController
         :years_lowest => { label: 'Pre-10th Century', fq: "publication_dates_facet:/..?.?/ AND publication_dates_facet:[0 TO 899]" },
     }
     # config.add_facet_field 'publication_dates_facet', label: 'Year of Publication'
-    config.add_facet_field 'genre_terms_facet', label: 'Genre'
-    config.add_facet_field 'topic_terms_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
-    config.add_facet_field 'languages', label: 'Language', limit: true
-    config.add_facet_field 'geographic_terms_facet', label: 'Region'
-    config.add_facet_field 'era_terms_facet', label: 'Era'
-    config.add_facet_field 'form_terms_facet', label: 'Form'
-    config.add_facet_field 'people_facet', label: 'People', limit: 20
-    config.add_facet_field 'corporations_facet', label: 'Corporations', limit: 20
-    config.add_facet_field 'meetings_facet', label: 'Meetings', limit: 20
+    config.add_facet_field 'public_author_facet', label: 'Author or Contributor', limit: 20
+    config.add_facet_field 'genre_terms_facet', label: 'Genre', limit: 20
+    config.add_facet_field 'full_topic_terms_facet', label: 'Topic', limit: 20, index_range: 'A'..'Z'
+    config.add_facet_field 'languages', label: 'Language', limit: 20
+    config.add_facet_field 'geographic_terms_facet', label: 'Region', limit: 20
+    config.add_facet_field 'era_terms_facet', label: 'Era', limit: 20
+    config.add_facet_field 'form_terms_facet', label: 'Format', limit: 20
 
     # config.add_facet_field 'example_pivot_field', label: 'Pivot Field', :pivot => ['material_type', 'languages']
 
